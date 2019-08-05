@@ -45,7 +45,6 @@ class FeedbackController extends Controller
 
     public function replyMessage(Request $request)
     {
-        dd($request->all());
         if($request->messages === null){
             return response()->json(array('success'=>false));
         } else {
