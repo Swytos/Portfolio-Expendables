@@ -15,7 +15,7 @@
 //     return view('welcome');
 // });
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::middleware(['auth', 'admin'])->group(function () {
 	Route::get('/admin', 'Admin\AdminController@index')->name('admin.dashboard');
