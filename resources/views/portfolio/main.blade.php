@@ -23,7 +23,7 @@
 
 		 <!-- Contact form JavaScript-->
 		<script src="{{ asset('js/jqBootstrapValidation.js') }}"></script>
-		<script src="{{ asset('js/contact_me.js') }}"></script>-->
+		<script src="{{ asset('js/contact_me.js') }}"></script>
 
 		<!-- Custom scripts for this template -->
 		<script src="{{ asset('js/agency.min.js') }}"></script>
@@ -255,17 +255,17 @@
 						<ul class="list-inline social-buttons">
 							<li class="list-inline-item">
 								<a href="#">
-									<i class="fa fa-twitter"></i>
+									<i class="fab fa-twitter"></i>
 								</a>
 							</li>
 							<li class="list-inline-item">
 								<a href="#">
-									<i class="fa fa-facebook"></i>
+									<i class="fab fa-facebook"></i>
 								</a>
 							</li>
 							<li class="list-inline-item">
 								<a href="#">
-									<i class="fa fa-linkedin"></i>
+									<i class="fab fa-linkedin"></i>
 								</a>
 							</li>
 						</ul>
