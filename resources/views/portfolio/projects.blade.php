@@ -19,8 +19,8 @@
 					<img class="img-fluid" src="{{ asset($project['image'])}}" alt="">
 				</a>
 				<div class="portfolio-caption">
-					<h4>{{ $project['name'] }}</h4>
-					<p class="text-muted">{{ $project['skills'] }}</p>
+					<h4>{!! $project['name'] !!}</h4>
+					<p class="text-muted">{!! $project['skills'] !!}</p>
 				</div>
 			</div>
 			@endforeach
@@ -36,7 +36,7 @@
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLiveLabel">{{ $project['name'] }}</h5>
+						<h5 class="modal-title" id="exampleModalLiveLabel">{!! $project['name'] !!}</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">×</span>
 						</button>
@@ -50,10 +50,10 @@
 								<p>{{ $project['description'] }}</p>
 								<ul class="list-inline">
 									<li>Website: {{ $project['url'] }}</li>
-									<li>Platform: {{ $project['platform'] }}</li>
-									<li>TimeLine: {{ $project['timeline'] }}</li>
-									<li>Team Size: {{ $project['team_size'] }}</li>
-									<li>Skills: {{ $project['skills'] }}</li>
+									<li>Platform: {!! $project['platform'] !!}</li>
+									<li>TimeLine: {!! $project['timeline'] !!}</li>
+									<li>Team Size: {!! $project['team_size'] !!}</li>
+									<li>Skills: {!! $project['skills'] !!}</li>
 								</ul>
 								<button class="btn btn-primary" data-dismiss="modal" type="button">
 									<i class="fa fa-times"></i>

@@ -92,8 +92,8 @@
 							<i class="fa fa-circle fa-stack-2x text-primary"></i>
 							<i class="fa fa-{{$service['icon']}} fa-stack-1x fa-inverse"></i>
 						</span>
-						<h4 class="service-heading">{{$service['name']}}</h4>
-						<p class="text-muted">{{$service['description']}}</p>
+						<h4 class="service-heading">{!! $service['name'] !!}</h4>
+						<p class="text-muted">{!! $service['description'] !!}</p>
 					</div>
 					@endforeach
 				</div>
@@ -122,11 +122,11 @@
 										</div>
 										<div class="timeline-panel">
 											<div class="timeline-heading">
-												<h4>{{ $element['date'] }}</h4>
-												<h4 class="subheading">{{ $element['name'] }}</h4>
+												<h4>{!! $element['date'] !!}</h4>
+												<h4 class="subheading">{!! $element['name'] !!}</h4>
 											</div>
 											<div class="timeline-body">
-												<p class="text-muted">{{ $element['description'] }}</p>
+												<p class="text-muted">{!! $element['description'] !!}</p>
 											</div>
 										</div>
 									</li>
@@ -137,11 +137,11 @@
 										</div>
 										<div class="timeline-panel">
 											<div class="timeline-heading">
-												<h4>{{ $element['date'] }}</h4>
-												<h4 class="subheading">{{ $element['name'] }}</h4>
+												<h4>{!! $element['date'] !!}</h4>
+												<h4 class="subheading">{!! $element['name'] !!}</h4>
 											</div>
 											<div class="timeline-body">
-												<p class="text-muted">{{ $element['description'] }}</p>
+												<p class="text-muted">{!! $element['description'] !!}  </p>
 											</div>
 										</div>
 									</li>

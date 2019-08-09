@@ -12,9 +12,9 @@
 			<div class="col-sm-4">
 				<div class="team-member">
 				<img class="mx-auto rounded-circle" src="{{ asset($member['image'])}}" alt="">
-					<h4>{{ $member['full_name'] }}</h4>
-					<p class="text-muted">{{ $member['role'] }}</p>
-					<p class="text-muted">{{ $member['description'] }}</p>
+					<h4>{!! $member['full_name'] !!}</h4>
+					<p class="text-muted">{!! $member['role'] !!}</p>
+					<p class="text-muted">{!! $member['description'] !!}</p>
 				</div>
 			</div>
 			@endforeach
