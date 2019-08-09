@@ -20,6 +20,7 @@ class HomeController extends Controller
     }
 
     public function mailContact(CreateContact $request)
+        
     {
         $data['name'] = $request->name;
         $data['email'] = $request->email;
