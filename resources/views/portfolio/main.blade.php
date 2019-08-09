@@ -27,6 +27,7 @@
 
 		<!-- Custom scripts for this template -->
 		<script src="{{ asset('js/agency.min.js') }}"></script>
+
 @endpush
 
 @section('content')

@@ -12,6 +12,9 @@ $(document).ready(function() {
 	});
 	//----------------------Service------------------------//
 	$("#apply_service_changes").on('click', function () {
+		for (instance in CKEDITOR.instances) {
+			CKEDITOR.instances[instance].updateElement();
+		}
 		var formData = new FormData($("#service_form")[0]);
 		$.ajax({
 			url: $("#service_form").attr('action'),
@@ -136,6 +139,9 @@ $(document).ready(function() {
 	});
 
 	$("#apply_about_changes").on('click', function () {
+		for (instance in CKEDITOR.instances) {
+			CKEDITOR.instances[instance].updateElement();
+		}
 		var formData = new FormData($("#about_form")[0]);
 		var photo_obj = $('#about_img');
 		photo_obj.croppie('result', {
@@ -231,6 +237,9 @@ $(document).ready(function() {
 	});
 
 	$("#apply_member_changes").on('click', function () {
+		for (instance in CKEDITOR.instances) {
+			CKEDITOR.instances[instance].updateElement();
+		}
 		var formData = new FormData($("#profile_form")[0]);
 		var photo_obj = $('#upload-photo');
 		photo_obj.croppie('result', {
@@ -240,7 +249,6 @@ $(document).ready(function() {
 			if (photo_obj.parents('.photo-wrap.upload-photo.ready').length !== 0){
 				formData.append('photo', resp);
 			};
-
 			$.ajax({
 				url: $("#profile_form").attr('action'),
 				type: 'POST',
@@ -312,6 +320,9 @@ $(document).ready(function() {
 	});
 
 	$("#apply_project_changes").on('click', function () {
+		for (instance in CKEDITOR.instances) {
+			CKEDITOR.instances[instance].updateElement();
+		}
 		var formData = new FormData($("#project_form")[0]);
 		if ($("#project_img").attr('src') != undefined) {
 			formData.append('image', $("#project_img").attr('src'));

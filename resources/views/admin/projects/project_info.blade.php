@@ -4,7 +4,10 @@
         <link rel="Stylesheet" type="text/css" href="{{ asset('libraries/crop-image/uploadPhoto.css') }}" />
 @endpush
 @push('scripts')
-
+	<script src="{{ asset('libraries/ckeditor/ckeditor.js') }}"></script>
+	<script>
+		CKEDITOR.replace( 'editor_project');
+	</script>
         <script src="{{ asset('libraries/crop-image/croppie.js') }}"></script>
 @endpush
 
@@ -92,7 +95,7 @@
 								<div class="form-group row">
 									<label class="col-lg-3 col-form-label form-control-label">Description</label>
 									<div class="col-lg-9">
-										<textarea class="form-control" name="description" rows="3">{{ isset($project) ? $project['description'] : '' }}</textarea>
+										<textarea id="editor_project" class="form-control" name="description" rows="3">{{ isset($project) ? $project['description'] : '' }}</textarea>
 									</div>
 								</div>
 								<div class="form-group row">

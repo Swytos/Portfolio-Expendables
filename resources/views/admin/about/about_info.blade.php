@@ -13,6 +13,10 @@
     <script>
         UploadPhoto.init();
     </script>
+    <script src="{{ asset('libraries/ckeditor/ckeditor.js') }}"></script>
+    <script>
+        CKEDITOR.replace( 'editor_about');
+    </script>
 @endpush
 
 @section('content')
@@ -76,7 +80,7 @@
                                             <div class="form-group row">
                                                 <label class="col-lg-3 col-form-label form-control-label">Description</label>
                                                 <div class="col-lg-9">
-                                                    <textarea class="form-control" name="description" rows="3">{{ isset($about) ? $about['description'] : '' }}</textarea>
+                                                    <textarea id="editor_about" class="form-control" name="description" rows="3">{{ isset($about) ? $about['description'] : '' }}</textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
