@@ -26,8 +26,6 @@ $('body').on('click', '#sendMessageButton', function (event) {
     $('.sl').slick({
         slidesToShow: 3,
         slidesToScroll: 3,
-        // prevArrow: '<i class="fas fa-arrow-left"></i>',
-        // nextArrow: '<i class="fas fa-arrow-right"></i>',
     });
 
     var filtered = false;

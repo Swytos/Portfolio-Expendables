@@ -437,6 +437,8 @@ header.masthead {
     margin-bottom: 0;
     text-transform: none; }
   .team-member p {
+    margin-left: 20px;
+    margin-right: 20px;
     margin-top: 0; }
 
 section#contact {
