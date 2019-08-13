@@ -1,6 +1,4 @@
-$( document ).ready(function() {
-
-    $('body').on('click', '#sendMessageButton', function (event) {
+$('body').on('click', '#sendMessageButton', function (event) {
         event.preventDefault();
         $.ajax({
             type: 'POST',
@@ -24,7 +22,27 @@ $( document ).ready(function() {
             });
         });
     });
-});
+
+    $('.sl').slick({
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        // prevArrow: '<i class="fas fa-arrow-left"></i>',
+        // nextArrow: '<i class="fas fa-arrow-right"></i>',
+    });
+
+    var filtered = false;
+
+    $('.js-filter').on('click', function(){
+        if (filtered === false) {
+            $('.filtering').slick('slickFilter',':even');
+            $(this).text('Unfilter Slides');
+            filtered = true;
+        } else {
+            $('.filtering').slick('slickUnfilter');
+            $(this).text('Filter Slides');
+            filtered = false;
+        }
+    });
 
 /*When clicking on Full hide fail/success boxes */
 $('#name, #email, #company, #message').focus(function() {

@@ -16,7 +16,6 @@
     <script src="{{ asset('libraries/ckeditor/ckeditor.js') }}"></script>
     <script>
         CKEDITOR.replace( 'editor');
-
     </script>
 @endpush
 

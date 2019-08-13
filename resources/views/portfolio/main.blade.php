@@ -11,13 +11,15 @@
 		<!-- Custom styles for this template -->
 		<link href="{{ asset('css/portfolio.min.css') }}" rel="stylesheet">
 		<link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+		<link href="{{ asset('libraries/slick/slick.css') }}" rel="stylesheet">
+		<link href="{{ asset('libraries/slick/slick-theme.css') }}" rel="stylesheet">
 @endpush
 @push('scripts')
 		<!-- Bootstrap core JavaScript -->
 		<script src="{{ asset('libraries/jquery/jquery.min.js') }}"></script>
 		<script src="{{ asset('libraries/bootstrap/js/bootstrap.min.js') }}"></script>
 		<script src="{{ asset('libraries/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
+		<script src="{{ asset('libraries/slick/slick.min.js') }}"></script>
 		<!-- Plugin JavaScript -->
 		<script src="{{ asset('libraries/jquery-easing/jquery.easing.min.js') }}"></script>
 
