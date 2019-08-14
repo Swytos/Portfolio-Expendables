@@ -40,7 +40,7 @@ $(document).ready(function() {
 		});
 
 	});
-	$('.icon').on('change', function () {
+	$('.icon').on('keyup', function () {
 		$('.icons').html('');
 		var buf = $(this).val();
 		$('.icons').append('<i class="fas fa-' + buf + ' fa-2x"></i>');
@@ -75,10 +75,10 @@ $(document).ready(function() {
 	});
 
 	team_services_table = $('#services').DataTable({
-		scrollX:        true,
+		scrollX: true,
 		scrollCollapse: true,
-		autoWidth:         true,
-		paging:         true,
+		autoWidth: true,
+		paging: true,
 		columnDefs: [
 			{ "width": "600px", "targets": [1]},
 			{ "className": "align-middle", "targets": [1]},

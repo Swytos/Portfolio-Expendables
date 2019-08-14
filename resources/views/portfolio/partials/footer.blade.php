@@ -9,16 +9,6 @@
                 <ul class="list-inline social-buttons">
                     <li class="list-inline-item">
                         <a href="#">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#">
-                            <i class="fab fa-facebook"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#">
                             <i class="fab fa-linkedin"></i>
                         </a>
                     </li>

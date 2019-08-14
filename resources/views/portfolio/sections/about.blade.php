@@ -9,8 +9,8 @@
                     We specialize in web application development, using new technologies to ensure the best possible software solution for our clients.
                     Though, we haven't been long on this freelancing platform, but we already have not few clients.
                     We are eager to progress in any technologic innovations with you would like to use in your work.
-                    Our skills:
                     <ul class="text-left">
+                        Our skills:
                         <li>MVC PHP frameworks such as Laravel, micro ones like Slim or Silex.</li>
                         <li>MySQL, MongoDB, Elasticsearch</li>
                         <li>CheddarGetter, PayPal, Eloqua, Amazon, Google, Shopify, Ebanx API's etc</li>
@@ -59,8 +59,9 @@
                     <li class="timeline-inverted">
                         <div class="timeline-image">
                             <h4>Be Part
-                                <br>Of Our
-                                <br>Story!</h4>
+                            <br>Of Our
+                            <br>Story!
+                            </h4>
                         </div>
                     </li>
                 </ul>

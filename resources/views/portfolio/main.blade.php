@@ -37,7 +37,7 @@
 
 		@include('portfolio.partials.header')
 
-		@include('portfolio.sections.about')
+{{--		@include('portfolio.sections.about')--}}
 
 		@include('portfolio.sections.services')
 		
