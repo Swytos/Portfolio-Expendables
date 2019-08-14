@@ -58,11 +58,14 @@ class AboutController extends Controller
 
     public function editAboutView(Request $request, $about_id)
     {
-//        dd($about_id);
-        $nav_bar = 'About';
-        $active_page = 'Update about';
-        $about = About::where('id', $about_id)->get()->first()->toArray();
-        return view('admin.about.about_info', compact('nav_bar', 'active_page', 'about'));
+        if(count(About::where('id', $about_id)->get())>0){
+            $nav_bar = 'About';
+            $active_page = 'Update about';
+            $about = About::where('id', $about_id)->get()->first()->toArray();
+            return view('admin.about.about_info', compact('nav_bar', 'active_page', 'about'));
+        } else {
+            return abort(404);
+        }
     }
     public function editAbout(UpdateAbout $request, $about_id)
     {

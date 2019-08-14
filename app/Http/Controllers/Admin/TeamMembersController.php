@@ -97,9 +97,13 @@ class TeamMembersController extends Controller
 
     public function editMemberView(Request $request, $member_id)
     {
-        $nav_bar = 'Team members';
-        $active_page = 'Update member';
-        $member = TeamMembers::where('id', $member_id)->get()->first()->toArray();
-        return view('admin.team_members.member_info', compact('nav_bar', 'active_page', 'member'));
+        if(count(TeamMembers::where('id', $member_id)->get())>0){
+            $member = TeamMembers::where('id', $member_id)->get()->first()->toArray();
+            $nav_bar = 'Team members';
+            $active_page = 'Update member';
+            return view('admin.team_members.member_info', compact('nav_bar', 'active_page', 'member'));
+        } else {
+            return abort(404);
+        }
     }
 }

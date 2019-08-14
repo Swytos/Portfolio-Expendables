@@ -73,15 +73,18 @@ class ServicesController extends Controller
 
     public function editServiceView(Request $request, $service_id)
     {
-        $nav_bar = 'Services';
-        $active_page = 'Update service';
-        $service = Services::where('id', $service_id)->get()->first()->toArray();
-        return view('admin.services.service_info', compact('nav_bar', 'active_page', 'service'));
+        if(count(Services::where('id', $service_id)->get())>0){
+            $nav_bar = 'Services';
+            $active_page = 'Update service';
+            $service = Services::where('id', $service_id)->get()->first()->toArray();
+            return view('admin.services.service_info', compact('nav_bar', 'active_page', 'service'));
+        } else {
+            return abort(404);
+        }
     }
 
     public function removeService(Request $request)
     {
-//        dd($request->all());
         $service = Services::where('id', $request->service_id)->update(['is_deleted' => 1]);
         if ($service == 1) {
             $result = array('success' => true);

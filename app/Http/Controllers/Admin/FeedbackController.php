@@ -25,11 +25,14 @@ class FeedbackController extends Controller
 
     public function createFeedbackView(Request $request, $feedback_id)
     {
-        $nav_bar = 'Feedback';
-        $active_page = 'Preview feedback';
-        Contact::select('*')->where('id', $feedback_id)->update(['status' => 0]);
-        $feedback = Contact::select('*')->where('id', $feedback_id)->get()->toArray();
-        return view('admin.feedback.feedback_info', compact('nav_bar', 'active_page', 'feedback'));
+        if(count(Contact::where('id', $feedback_id)->get())>0){
+            $nav_bar = 'Feedback';
+            $active_page = 'Preview feedback';
+            $feedback = Contact::where('id', $feedback_id)->get()->toArray();
+            return view('admin.feedback.feedback_info', compact('nav_bar', 'active_page', 'feedback'));
+        } else {
+            return abort(404);
+        }
     }
 
     public function removeFeedback(Request $request)

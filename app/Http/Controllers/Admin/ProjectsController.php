@@ -105,9 +105,13 @@ class ProjectsController extends Controller
 
     public function editProjectView(Request $request, $project_id)
     {
+        if(count(Projects::where('id', $project_id)->get())>0){
         $nav_bar = 'Projects';
         $active_page = 'Update project';
         $project = Projects::where('id', $project_id)->get()->first()->toArray();
         return view('admin.projects.project_info', compact('nav_bar', 'active_page', 'project'));
+        } else {
+            return abort(404);
+        }
     }
 }
