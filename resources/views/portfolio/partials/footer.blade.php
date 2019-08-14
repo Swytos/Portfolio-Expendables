@@ -9,6 +9,11 @@
                 <ul class="list-inline social-buttons">
                     <li class="list-inline-item">
                         <a href="#">
+                            <img src="{{ asset('img/team/up.png') }}" alt="">
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#">
                             <i class="fab fa-linkedin"></i>
                         </a>
                     </li>

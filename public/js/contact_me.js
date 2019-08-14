@@ -22,12 +22,6 @@ $('body').on('click', '#sendMessageButton', function (event) {
             });
         });
     });
-
-    $('.sl').slick({
-        slidesToShow: 3,
-        slidesToScroll: 3,
-    });
-
     var filtered = false;
 
     $('.js-filter').on('click', function(){
@@ -42,9 +36,29 @@ $('body').on('click', '#sendMessageButton', function (event) {
         }
     });
 
-/*When clicking on Full hide fail/success boxes */
-$('#name, #email, #company, #message').focus(function() {
-  $('#success').hide();
-  $('#error').hide();
-});
+    /*When clicking on Full hide fail/success boxes */
+    $('#name, #email, #company, #message').focus(function() {
+      $('#success').hide();
+      $('#error').hide();
+    });
 
+    $('.sl').slick({
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        responsive: [
+            {
+                breakpoint: 992,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    });
