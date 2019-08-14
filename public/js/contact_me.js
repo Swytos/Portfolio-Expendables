@@ -47,17 +47,21 @@ $('body').on('click', '#sendMessageButton', function (event) {
         slidesToScroll: 3,
         responsive: [
             {
-                breakpoint: 992,
+                breakpoint: 1100,
                 settings: {
                     slidesToShow: 2,
-                    slidesToScroll: 2
+                    slidesToScroll: 2,
+                    // prevArrow: '',
+                    // nextArrow: '',
                 }
             },
             {
                 breakpoint: 768,
                 settings: {
                     slidesToShow: 1,
-                    slidesToScroll: 1
+                    slidesToScroll: 1,
+                    prevArrow: '',
+                    nextArrow: '',
                 }
             }
         ]
