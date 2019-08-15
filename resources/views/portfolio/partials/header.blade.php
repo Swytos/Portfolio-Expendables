@@ -15,9 +15,6 @@
                     <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#about">About</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#team">Team</a>
                 </li>
                 <li class="nav-item">

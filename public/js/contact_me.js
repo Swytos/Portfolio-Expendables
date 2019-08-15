@@ -47,12 +47,10 @@ $('body').on('click', '#sendMessageButton', function (event) {
         slidesToScroll: 3,
         responsive: [
             {
-                breakpoint: 1100,
+                breakpoint: 1150,
                 settings: {
                     slidesToShow: 2,
                     slidesToScroll: 2,
-                    // prevArrow: '',
-                    // nextArrow: '',
                 }
             },
             {
@@ -60,8 +58,6 @@ $('body').on('click', '#sendMessageButton', function (event) {
                 settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1,
-                    prevArrow: '',
-                    nextArrow: '',
                 }
             }
         ]
