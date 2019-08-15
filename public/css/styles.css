@@ -1,13 +1,13 @@
 .intro-heading {
 	text-shadow: 
-		5px 5px 5px black,
-		5px -5px 5px black, 
-		5px 0 5px black, 
-		0 5px 5px black, 
-		0 -5px 5px black, 
-		-5px 0 5px black, 
-		-5px 5px 5px black, 
-		-5px -5px 5px black;
+		2px 2px 2px black,
+		2px -2px 2px black,
+		2px 0 2px black,
+		0 2px 2px black,
+		0 -2px 2px black,
+		-2px 0 2px black,
+		-2px 2px 2px black,
+		-2px -2px 2px black;
 }
 
 .intro-lead-in {
