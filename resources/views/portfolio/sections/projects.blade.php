@@ -27,8 +27,8 @@
 						@endforeach
 					</div>
 					<div class="col-6">
-						<h3>Name: {{ $project->name }}</h3>
-						<h4>Url: {{ $project->url }}</h4>
+						<h3 class="text-center">{{ $project->name }}</h3>
+						<h4><a target="_blank" href="{{ $project->url }}">Visit this site</a></h4>
 						<p class="text-muted">{!! $project->description !!}</p>
 						<p class="text-center">
 							<a href="">
