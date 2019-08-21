@@ -29,7 +29,7 @@
 					<div class="col-6">
 						<h3 class="text-center">{{ $project->name }}</h3>
 						<h4><a target="_blank" href="{{ $project->url }}">Visit this site</a></h4>
-						<p class="text-muted">{!! $project->description !!}</p>
+						<p class="text-muted">{!! str_limit($project->description, '400', '...') !!}</p>
 						<p class="text-center">
 							<a href="">
 								Learn more ...
