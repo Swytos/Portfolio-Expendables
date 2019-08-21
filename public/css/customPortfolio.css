@@ -1,10 +1,8 @@
 
 .main img{
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    max-height: 300px;
-    max-width: 400px;
-    height: auto;
-    width: auto;
+    max-height: 430px;
+    max-width: 430px;
 }
 .main div {
     display:block;

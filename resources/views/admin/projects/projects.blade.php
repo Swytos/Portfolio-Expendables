@@ -29,7 +29,7 @@
 						@endif
 						<th>
 							@foreach($project->projectImages as $image)
-							<img style="max-height: 50px; width: auto;"  src="{{ $image->image_path }}"/>
+							<img style="max-height: 50px; max-width: 50px;"  src="{{ $image->image_path }}"/>
 							@endforeach
 						</th>
 						<th>
