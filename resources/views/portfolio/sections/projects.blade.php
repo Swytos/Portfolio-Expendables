@@ -29,7 +29,7 @@
 					<div class="col-6">
 						<h3>Name: {{ $project->name }}</h3>
 						<h4>Url: {{ $project->url }}</h4>
-						{!! $project->description !!}
+						<p class="text-muted">{!! $project->description !!}</p>
 						<p class="text-center">
 							<a href="">
 								Learn more ...
