@@ -19,6 +19,8 @@
     <link href="{{ asset('libraries/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="{{ asset('css/sb-admin.css') }}" rel="stylesheet">
+      <link rel="stylesheet" href="{{ asset('css/customPortfolio.css') }}">
+      <link rel="stylesheet" href="{{ asset('libraries/fancybox/dist/jquery.fancybox.min.css') }}">
     @stack('styles')
 </head>
 <body id="page-top">
@@ -182,6 +184,7 @@
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('js/admin.js') }}"></script>
     <script src="{{ asset('js/sb-admin.min.js') }}"></script>
+    <script src="{{ asset('libraries/fancybox/dist/jquery.fancybox.min.js') }}"></script>
     @stack('scripts')
 
   </body>

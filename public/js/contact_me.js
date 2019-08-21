@@ -42,6 +42,14 @@ $('body').on('click', '#sendMessageButton', function (event) {
       $('#error').hide();
     });
 
+    /* Project slick carousel*/
+    $('.projects').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: false
+    });
+
+    /* Project slick carousel*/
     $('.sl').slick({
         slidesToShow: 3,
         slidesToScroll: 3,

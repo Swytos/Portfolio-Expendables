@@ -26,10 +26,6 @@ class UpdateProject extends FormRequest
         return [
             'name' => 'required|unique:projects,name,'.$this->project_id.',id,is_deleted,0|max:100',
             'url' => 'required|max:100',
-            'team_size' => 'required|max:200',
-            'platform' => 'required|max:200',
-            'skills' => 'required|max:200',
-            'timeline' => 'required|max:200',
             'description' => 'required'
         ];
     }

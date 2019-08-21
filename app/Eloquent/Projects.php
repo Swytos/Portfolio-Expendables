@@ -8,5 +8,10 @@ class Projects extends Model
 {
 	protected $table = 'projects';
 
-	protected $fillable = ['name', 'image', 'url', 'description', 'team_size', 'platform', 'skills', 'timeline'];
+	protected $fillable = ['name', 'url', 'description'];
+
+	public function projectImages()
+    {
+	    return $this->hasMany(ProjectImages::class);
+    }
 }

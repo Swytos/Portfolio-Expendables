@@ -8,7 +8,7 @@
             <div class="col-md-6">
                 <ul class="list-inline social-buttons">
                     <li class="list-inline-item">
-                        <a href="https://www.upwork.com/o/companies/~01509d274d49a20e5d">
+                        <a target="_blank" href="https://www.upwork.com/o/companies/~01509d274d49a20e5d">
                             <img src="{{ asset('img/team/up.png') }}" alt="">
                         </a>
                     </li>

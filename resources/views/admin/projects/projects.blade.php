@@ -27,7 +27,11 @@
 						@else
 							<th>{{ $project['description'] }}</th>
 						@endif
-						<th><img height="50px" width="50px" src="{{ asset($project['image'])}}"/></th>
+						<th>
+							@foreach($project->projectImages as $image)
+							<img style="max-height: 50px; width: auto;"  src="{{ $image->image_path }}"/>
+							@endforeach
+						</th>
 						<th>
 							<a href="{{ route('admin.edit_project', ['id' => $project['id']]) }}" class="btn btn-secondary edit_project"><i class="fas fa-edit"></i></a> 
 							<button type="button" class="btn btn-danger remove_project"><i class="fas fa-trash-alt"></i></button>
@@ -40,4 +44,10 @@
 		<a href="{{ route('admin.new_project') }}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Add Project</a>
 	</div>
 </div>
+<script>
+	var files = {};
+</script>
 @endsection
+@push('modals')
+	@include('admin.projects.remove_projects_modal')
+@endpush

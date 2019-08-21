@@ -25,12 +25,8 @@ class CreateProject extends FormRequest
         return [
             'name' => 'required|unique:projects,name,1,is_deleted|max:100',
             'url' => 'required|max:100',
-            'team_size' => 'required|max:200',
-            'platform' => 'required|max:200',
-            'skills' => 'required|max:200',
-            'timeline' => 'required|max:200',
             'description' => 'required',
-            'image' => 'required'
+            'fileNew' => 'required|min:1|max:4'
         ];
     }
 
@@ -38,7 +34,6 @@ class CreateProject extends FormRequest
     {
         return [
             'name.unique'  => 'You already have <b>'.$this->input('name').'</b> project.',
-            'photo.required'  => 'Please choose an image',
         ];
     }
 }

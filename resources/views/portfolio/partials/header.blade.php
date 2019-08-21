@@ -9,19 +9,19 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#services">Services</a>
+                    <a class="nav-link js-scroll-trigger" href="{{ route('portfolio') }}#services">Services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
+                    <a class="nav-link js-scroll-trigger" href="{{ route('portfolio') }}#portfolio">Portfolio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#team">Team</a>
+                    <a class="nav-link js-scroll-trigger" href="{{ route('portfolio') }}#team">Team</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+                    <a class="nav-link js-scroll-trigger" href="{{ route('portfolio') }}#contact">Contact</a>
                 </li>
 {{--                <li class="nav-item">--}}
-{{--                    <a class="nav-link js-scroll-trigger" href="">Blog</a>--}}
+{{--                    <a class="nav-link js-scroll-trigger" href="{{ route('blog') }}">Blog</a>--}}
 {{--                </li>--}}
             </ul>
         </div>

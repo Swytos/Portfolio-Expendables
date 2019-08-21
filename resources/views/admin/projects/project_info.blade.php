@@ -23,36 +23,32 @@
 				<strong>Oh no!</strong> Apply commens written below and try again.
 				<div id="error_list"></div>
 			</div>
+
 			<div class="alert alert-success" id="success_block" role="alert" style="display:none">
 				<strong>Great!</strong> Now you can return to <a href="{{ route('admin.projects') }}">projects list page.</a>
 			</div>
 			<div class="photo-wrap upload-photo">
 				<div class="grid">
-					<form role="form" method="POST" id="project_form" enctype="multipart/form-data" action="{{ isset($project) ? route('admin.edit_project', $project['id']) : route('admin.new_project') }}">
-						<div class="col-md-6">
-							@if (isset($project))
-							<div id="project">
-								<img src="{{ $project['image'] }}" alt=""></br>
-								<button type="button" id="change_project_photo" class="btn btn-secondary" style="">Change</button>
+					<div class="col-md-6">
+						<div id="uploading_image">
+							<div class="upload-msg">
+								Upload project photo
 							</div>
-							<div id="uploading_image" style="display:none;">
-							@else
-							<div id="uploading_image">
-							@endif
-								<div class="upload-msg">
-									Upload project photo
-								</div>
-								<div class="upload-profile-photo-wrap">
-								    <img id="project_img"/>
-								</div>
-								<div class="actions">
-									<button class="btn btn-secondary file-btn">
-										<span>Upload</span>
-										<input type="file" id="project_photo" value="Choose a file" accept="image/*" />
-									</button>
-								</div>
+
+							<div class="upload-profile-photo-wrap">
+
+							</div>
+
+							<div class="actions col-12">
+								<button class="btn btn-secondary file-btn">
+									<span>Upload</span>
+									<input type="file" id="project_photo" value="Choose a file" accept="image/*" name="upload_file[]"  multiple/>
+								</button>
 							</div>
 						</div>
+					</div>
+					<form role="form" method="POST" id="project_form" enctype="multipart/form-data" action="{{ isset($project) ? route('admin.edit_project', $project['id']) : route('admin.new_project') }}">
+
 						<div class="col-md-6">
 							<h4 class="m-y-2">{{ $active_page }}</h4>
 							<div class="tab-pane" id="edit">
@@ -69,27 +65,10 @@
 									</div>
 								</div>
 								<div class="form-group row">
-									<label class="col-lg-3 col-form-label form-control-label">Team Size</label>
-									<div class="col-lg-9">
-										<input class="form-control" type="text" name="team_size" value="{{ isset($project) ? $project['team_size'] : '' }}">
-									</div>
-								</div>
-								<div class="form-group row">
-									<label class="col-lg-3 col-form-label form-control-label">Platform</label>
-									<div class="col-lg-9">
-										<input class="form-control" type="text" name="platform" value="{{ isset($project) ? $project['platform'] : '' }}">
-									</div>
-								</div>
-								<div class="form-group row">
-									<label class="col-lg-3 col-form-label form-control-label">Skills</label>
-									<div class="col-lg-9">
-										<input class="form-control" type="text" name="skills" value="{{ isset($project) ? $project['skills'] : '' }}">
-									</div>
-								</div>
-								<div class="form-group row">
-									<label class="col-lg-3 col-form-label form-control-label">Timeline</label>
-									<div class="col-lg-9">
-										<input class="form-control" type="text" name="timeline" value="{{ isset($project) ? $project['timeline'] : '' }}">
+									<div class="col-lg-3"></div>
+									<div class="form-check col-lg-9">
+										<input {!! isset($project) ? $project->display_project == 1 ? 'checked' : '' : '' !!} type="checkbox" name="display_project" class="form-check-input" id="display_project">
+										<label  class="form-check-label" for="display_project">Display project</label>
 									</div>
 								</div>
 								<div class="form-group row">
@@ -113,4 +92,8 @@
 		</div>
 	</div>
 </div>
+<script>
+	var files = {};
+	files = <?php echo json_encode($files); ?>;
+</script>
 @endsection

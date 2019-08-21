@@ -27,7 +27,7 @@
                             @else
                                 <th>{{ $element['description'] }}</th>
                             @endif
-                            <th><img height="50px" width="50px" src="{{ $element['image'] }}"/></th>
+                            <th><img style="max-height: 50px; width: auto;"  src="{{ $element['image'] }}"/></th>
                             <th>
                                 <a href="{{ route('admin.edit_about', ['id' => $element['id']]) }}" class="btn btn-secondary edit_project"><i class="fas fa-edit"></i></a>
                                 <button type="button" class="btn btn-danger remove_about"><i class="fas fa-trash-alt"></i></button>

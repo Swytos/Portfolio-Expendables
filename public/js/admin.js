@@ -282,15 +282,39 @@ $(document).ready(function() {
 
 	//----------------------Project------------------------//
 
+	var count = 0;
+	files['new'] = {};
+	$.each(files['old'], function(index,value) {
+		displayOldImage(index,value);
+	});
+	function displayOldImage(fileId,file) {
+		if (count == 0){
+			$(".upload-profile-photo-wrap").show();
+				$(".upload-msg").hide();
+				$('.upload-profile-photo-wrap').append(
+					'<div class="main col-12 text-center">'+
+					'<a data-fancybox="image" href="'+ file +'"><img src="'+ file +'"/></a>' +
+					'<div class="delete" data-type="old" data-file-id="'+ fileId +'" ><i class="fas fa-times fa-2x" aria-hidden="true"></i></div>'+
+					'</div>');
+			count++;
+		} else if(count > 0){
+			$('.upload-profile-photo-wrap').after(
+				'<div class="minor col-4">'+
+				'<a data-fancybox="image" href="'+ file +'"><img src="'+ file +'" alt=""></a>'+
+				'<div class="delete" data-type="old" data-file-id="'+ fileId +'"><i class="fas fa-times fa-1x" aria-hidden="true"></i></div>'+
+				'</div>'
+			);
+		}
+	}
 	team_projects_table = $('#projects').DataTable({
 		scrollX:        true,
 		scrollCollapse: true,
-		autoWidth:         true,  
-		paging:         true,       
+		autoWidth:         true,
+		paging:         true,
 		columnDefs: [
 			{ "width": "600px", "targets": [2] },
 			{ "className": "align-middle", "targets": [2]},
-			{ "width": "50px", "targets": [3] },
+			{ "width": "250px", "targets": [3] },
 			{ "className": "text-center", "targets": [3]},
 			{ "width": "100px", "targets": [4] },
 			{ "className": "align-middle", "targets": [4]},
@@ -298,59 +322,146 @@ $(document).ready(function() {
 		]
 	});
 
-
 	$("#project_photo").on('change', function() {
-		var url = this.value;
-		var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
-		if (this.files && this.files[0] && (ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg")) {
-			var reader = new FileReader();
-
-			reader.onload = function (e) {
-
-				$(".upload-profile-photo-wrap").show();
-				$(".upload-msg").hide();
-				$('#project_img').attr('src', e.target.result);
-			}
-
-			reader.readAsDataURL(this.files[0]);
-		}else{
-			$(".upload-profile-photo-wrap").hide();
-			$(".upload-msg").show();
-		}
-	});
-
-	$("#apply_project_changes").on('click', function () {
-		for (instance in CKEDITOR.instances) {
-			CKEDITOR.instances[instance].updateElement();
-		}
-		var formData = new FormData($("#project_form")[0]);
-		if ($("#project_img").attr('src') != undefined) {
-			formData.append('image', $("#project_img").attr('src'));
-		};
-		$.ajax({
-			url: $("#project_form").attr('action'),
-			type: 'POST',
-			data: formData,
-			beforeSend: function() {
-				$("#error_block").hide();
-				$("#success_block").hide();
-			},
-			cache: false,
-			processData: false,
-			contentType: false,
-		}).done(function( data ) {
-			if (data.success === true) {
-				$("#success_block").show();
-			}
-		}).fail(function(data) {
-			$("#error_block").show();
-			$("#error_list").html("<ul></ul>");
-			$.each(data.responseJSON.errors, function( index, value ) {
-				$("#error_list ul").append("<li>"+value+"</li>");
-			});
+		$.each(this.files, function(index, file) {
+			var fileId = hashCode();
+			files['new'][fileId] = file;
+			displayNewImage(fileId, file);
 		});
 	});
 
+	$('body').on('click','.delete', function() {
+		var type = $(this).attr('data-type');
+		var imageId = $(this).attr('data-file-id');
+		if (type == 'old'){
+			delete files['old'][imageId];
+		} else if (type == 'new') {
+			delete files['new'][imageId];
+		}
+		$('.upload-profile-photo-wrap').html('');
+		$('.minor').remove();
+		count = 0;
+		if ($.isEmptyObject(files['old']) == false || $.isEmptyObject(files['new']) == false){
+			$.each(files['new'], function(index, file){
+				displayNewImage(index, file);
+			});
+			$.each(files['old'], function(index, file){
+				displayOldImage(index, file);
+			});
+		} else {
+			$(".upload-msg").show();
+		}
+	});
+	window.hashCode = function() {
+		return  Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+	};
+
+	function displayNewImage(fileId,file) {
+		if (count == 0){
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				$(".upload-profile-photo-wrap").show();
+				$(".upload-msg").hide();
+				$('.upload-profile-photo-wrap').append(
+					'<div class="main col-12 text-center">'+
+					'<a data-fancybox="image" href="'+ e.target.result +'"><img src="'+ e.target.result +'"/></a>' +
+					'<div class="delete" data-type="new" data-file-id="'+ fileId +'" ><i class="fas fa-times fa-2x" aria-hidden="true"></i></div>'+
+					'</div>');
+			}
+			reader.readAsDataURL(file);
+			count++;
+		} else if(count > 0){
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				$('.upload-profile-photo-wrap').after(
+					'<div class="minor col-4">'+
+					'<a data-fancybox="image" href="'+ e.target.result +'"><img src="'+ e.target.result +'" alt=""></a>'+
+					'<div class="delete" data-type="new" data-file-id="'+ fileId +'"><i class="fas fa-times fa-1x" aria-hidden="true"></i></div>'+
+					'</div>'
+				);
+			}
+			reader.readAsDataURL(file);
+		}
+	}
+
+	$("#apply_project_changes").on('click', function () {
+		if((Object.keys(files['old']).length + Object.keys(files['new']).length) <= 4){
+			for (instance in CKEDITOR.instances) {
+				CKEDITOR.instances[instance].updateElement();
+			}
+			var formData = new FormData($("#project_form")[0]);
+			var arrayOld = $.map(files['old'], function(value, index) {
+				return [value];
+			});
+			$.each(arrayOld, function(index, file){
+				formData.append("fileOld[]", file);
+			});
+			var arrayNew = $.map(files['new'], function(value, index) {
+				return [value];
+			});
+			$.each(arrayNew, function(index, file){
+				formData.append("fileNew[]", file);
+			});
+			if($('#display_project').prop("checked") == true){
+				formData.append("display_project", 1);
+			}
+			else if($('#display_project').prop("checked") == false){
+				formData.append("display_project", 0);
+			}
+			$.ajax({
+				url: $("#project_form").attr('action'),
+				type: 'POST',
+				data: formData,
+				beforeSend: function() {
+					$("#error_block").hide();
+					$("#success_block").hide();
+				},
+				cache: false,
+				processData: false,
+				contentType: false,
+			}).done(function( data ) {
+				if (data.success === true) {
+					$("#success_block").show();
+				}
+			}).fail(function(data) {
+				$("#error_block").show();
+				$("#error_list").html("<ul></ul>");
+				$.each(data.responseJSON.errors, function( index, value ) {
+					$("#error_list ul").append("<li>"+value+"</li>");
+				});
+			});
+		} else {
+			$("#error_block").show();
+			$("#error_list").html("<ul></ul>");
+			$("#error_list ul").append("<li>The file may not be greater than 4 characters.</li>");
+		}
+
+	});
+
+	$("#projects").on('click', '.remove_project', function (event) {
+		var tr_row = $(this).parents('tr');
+		var project_id = tr_row.attr('project-id');
+		$("#remove_project_id").attr('value', project_id);
+		$("#remove_project_modal b").text(tr_row.find('th:first').text());
+		$("#remove_project_modal").modal('show');
+	});
+
+	$("#confirm_removing_project").on('click', function() {
+		var project_id = $("#remove_project_id").val();
+		$.ajax({
+			type: 'POST',
+			url: '/admin/remove_project',
+			data: {
+				'project_id': project_id
+			},
+			success: function(data){
+				$("#remove_project_modal").modal('hide');
+				if (data.success == true) {
+					team_projects_table.row( $("tr[project-id='"+project_id+"']") ).remove().draw();
+				};
+			}
+		});
+	});
 
 	//----------------------Feedback-----------------------//
 

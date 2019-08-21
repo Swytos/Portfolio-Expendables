@@ -18,7 +18,7 @@ class PortfolioPageController extends Controller
 	public function index()
 	{
 		$not_show_header = true;
-		$projects = Projects::select('*')->where('is_deleted', 0)->get()->toArray();
+		$projects = Projects::where('display_project', 1)->get();
 		$members = TeamMembers::select('*')->where('is_deleted', 0)->get()->toArray();
 		$services = Services::select('*')->where('is_deleted', 0)->get()->toArray();
 		$about = About::select('*')->where('is_deleted', 0)->get()->toArray();

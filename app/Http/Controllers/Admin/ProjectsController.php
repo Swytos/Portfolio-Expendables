@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Eloquent\Contact;
+
+use App\Eloquent\ProjectImages;
 use Auth;
 use Image;
 use Illuminate\Http\Request;
@@ -28,13 +29,18 @@ class ProjectsController extends Controller
         $nav_bar = 'Projects';
         $active_page = 'Projects';
         $projects = [];
-        $projects = Projects::select('*')->where('is_deleted', 0)->get()->toArray();
+        $projects = Projects::all();
         return view('admin.projects.projects', compact('nav_bar', 'active_page', 'projects'));
     }
 
     public function removeProject(Request $request)
     {
-        $projects = Projects::where('id', $request->project_id)->update(['is_deleted' => 1]);
+        $project_images = ProjectImages::where('projects_id', $request->project_id);
+        foreach ($project_images->get() as $image){
+            unlink(public_path($image->image_path));
+        }
+        $project_images->delete();
+        $projects = Projects::where('id', $request->project_id)->delete();
         if ($projects == 1) {
             $result = array('success' => true);
         } else {
@@ -47,7 +53,8 @@ class ProjectsController extends Controller
     {
         $nav_bar = 'Projects';
         $active_page = 'New project';
-        return view('admin.projects.project_info', compact('nav_bar', 'active_page'));
+        $files['old'] = 0;
+        return view('admin.projects.project_info', compact('nav_bar', 'active_page','files'));
     }
 
     public function createProject(CreateProject $request)
@@ -57,19 +64,21 @@ class ProjectsController extends Controller
             $project = new Projects;
             $project->name = $request->input('name');
             $project->url = $request->input('url');
-            $project->team_size = $request->input('team_size');
-            $project->platform = $request->input('platform');
-            $project->skills = $request->input('skills');
-            $project->timeline = $request->input('timeline');
             $project->description = $request->input('description');
-
-
-            $filename = time().'.jpg';
-            $path = '/img/projects/'.$filename;
-            Image::make(file_get_contents($request->input('image')))->save(public_path().$path);
-            $project->image=$path;
-
+            $project->display_project = $request->display_project;
             $project->save();
+            if ($request->has('fileNew')) {
+                foreach($request->fileNew as $file){
+                    $filename = substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil(10/strlen($x)) )),1,10);
+                    $filename = $filename.'.jpg';
+                    $path = '/img/projects/'.$filename;
+                    Image::make(file_get_contents($file))->save(public_path().$path);
+                    $project_images = new ProjectImages();
+                    $project_images->projects_id = $project->id;
+                    $project_images->image_path = $path;
+                    $project_images->save();
+                }
+            }
             return response()->json(array('success' => true));
         } else {
             return abort(404);
@@ -83,17 +92,24 @@ class ProjectsController extends Controller
             $project = Projects::find($request->project_id);
             $project->name = $request->input('name');
             $project->url = $request->input('url');
-            $project->team_size = $request->input('team_size');
-            $project->platform = $request->input('platform');
-            $project->skills = $request->input('skills');
-            $project->timeline = $request->input('timeline');
             $project->description = $request->input('description');
-
-            if ($request->has('image')) {
-                $filename = time().'.jpg';
-                $path = '/img/projects/'.$filename;
-                Image::make(file_get_contents($request->input('image')))->save(public_path().$path); 
-                $project->image=$path;
+            $project->display_project = $request->display_project;
+            if ($request->has('fileOld')){
+                ProjectImages::where('projects_id', $request->project_id)->whereNotIn('image_path',$request->fileOld)->delete();
+            } else {
+                ProjectImages::where('projects_id', $request->project_id)->delete();
+            }
+            if ($request->has('fileNew')) {
+                foreach($request->fileNew as $file){
+                    $filename = substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil(10/strlen($x)) )),1,10);
+                    $filename = $filename.'.jpg';
+                    $path = '/img/projects/'.$filename;
+                    Image::make(file_get_contents($file))->save(public_path().$path);
+                    $project_images = new ProjectImages();
+                    $project_images->projects_id = $request->project_id;
+                    $project_images->image_path = $path;
+                    $project_images->save();
+                }
             }
 
             $project->update();
@@ -108,8 +124,19 @@ class ProjectsController extends Controller
         if(count(Projects::where('id', $project_id)->get())>0){
         $nav_bar = 'Projects';
         $active_page = 'Update project';
-        $project = Projects::where('id', $project_id)->get()->first()->toArray();
-        return view('admin.projects.project_info', compact('nav_bar', 'active_page', 'project'));
+        $project = Projects::where('id', $project_id)->get()->first();
+        $images = $project->projectImages->toArray();
+        if (count($images) > 0){
+            foreach($images as $image){
+                $file[$image['id']] = $image['image_path'];
+            }
+            $files['old'] = $file;
+        } else {
+            $files['old'] = 0;
+        }
+
+
+        return view('admin.projects.project_info', compact('nav_bar', 'active_page', 'project', 'files'));
         } else {
             return abort(404);
         }

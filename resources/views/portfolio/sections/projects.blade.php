@@ -7,24 +7,41 @@
 				<h3 class="section-subheading"></h3>
 			</div>
 		</div>
-		<div class="row">
-			@foreach ($projects as $key => $project)
-			<div class="col-md-4 col-sm-6 portfolio-item">
-				<a class="portfolio-link text-center" data-toggle="modal" href="#portfolioModal_{{ $key+1 }}">
-					<div class="portfolio-hover">
-						<div class="portfolio-hover-content">
-							<i class="fa fa-plus fa-3x"></i>
-						</div>
+
+		<div class="projects">
+			@foreach($projects as $project)
+			<div class="projects__slide">
+				<div class="row">
+					<div class="col-6 row">
+						@foreach($project->projectImages as $image)
+							@if(!isset($buf))
+								<div class="main col-12 text-center">
+									<a data-fancybox="{{ $image->projects_id }}" href="{{ asset($image->image_path) }}"><img src="{{ asset($image->image_path) }}" alt=""></a>
+								</div>
+							@php $buf=1; @endphp
+							@else
+								<div class="col-4 minor text-center">
+									<a data-fancybox="{{ $image->projects_id }}" href="{{ asset($image->image_path) }}"><img src="{{ asset($image->image_path) }}" alt=""></a>
+								</div>
+							@endif
+						@endforeach
 					</div>
-					<img class="img-fluid" src="{{ asset($project['image'])}}" alt="">
-				</a>
-				<div class="portfolio-caption">
-					<h4>{!! $project['name'] !!}</h4>
-					<p class="text-muted">{!! $project['skills'] !!}</p>
+					<div class="col-6">
+						<h3>Name: {{ $project->name }}</h3>
+						<h4>Url: {{ $project->url }}</h4>
+						{!! $project->description !!}
+						<p class="text-center">
+							<a href="">
+								Learn more ...
+							</a>
+						</p>
+					</div>
 				</div>
 			</div>
+				@php unset($buf); @endphp
 			@endforeach
 		</div>
+
 	</div>
 </section>
 
@@ -46,14 +63,9 @@
 						<div class="col-lg-10 mx-auto">
 							<div class="modal-body text-center">
 								<!-- Project Details Go Here -->
-								<img class="img-fluid d-block mx-auto" src="{{ asset($project['image'])}}" alt="">
 								<p>{{ $project['description'] }}</p>
 								<ul class="list-inline">
 									<li>Website: {{ $project['url'] }}</li>
-									<li>Platform: {!! $project['platform'] !!}</li>
-									<li>TimeLine: {!! $project['timeline'] !!}</li>
-									<li>Team Size: {!! $project['team_size'] !!}</li>
-									<li>Skills: {!! $project['skills'] !!}</li>
 								</ul>
 								<button class="btn btn-primary" data-dismiss="modal" type="button">
 									<i class="fa fa-times"></i>

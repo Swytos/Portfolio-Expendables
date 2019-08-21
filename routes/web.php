@@ -58,3 +58,4 @@ Route::middleware(['auth', 'admin'])->group(function () {
 Route::get('/', 'PortfolioPageController@index')->name('portfolio');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/home/contact', 'HomeController@mailContact')->name('contact');
+Route::get('/blog', 'BlogPageController@index')->name('blog');

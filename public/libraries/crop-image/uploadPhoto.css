@@ -34,7 +34,7 @@ button:focus {
 }
 
 .actions {
-    padding: 5px 0;
+    padding: 20px 0;
 }
 .actions button {
     margin-right: 5px;
@@ -260,19 +260,19 @@ a.btn-secondary{
 
 /*.uploading_image*/
 
-#project img {
-    max-width: 450px;
-    max-height: 450px;
-    border: 2px solid #000;
-    margin-bottom: 5px;
-}
+/*#project img {*/
+/*    max-width: 450px;*/
+/*    max-height: 450px;*/
+/*    border: 2px solid #000;*/
+/*    margin-bottom: 5px;*/
+/*}*/
 
 
-#project_img {
-    position: relative;
-    max-width: 450px;
-    max-height: 450px;
-}
+/*#project_img {*/
+/*    position: relative;*/
+/*    max-width: 450px;*/
+/*    max-height: 450px;*/
+/*}*/
 
 .upload-profile-photo-wrap {
     max-height: 450px;
