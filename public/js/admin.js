@@ -314,7 +314,7 @@ $(document).ready(function() {
 		columnDefs: [
 			{ "width": "600px", "targets": [2] },
 			{ "className": "align-middle", "targets": [2]},
-			{ "width": "250px", "targets": [3] },
+			{ "width": "300px", "targets": [3] },
 			{ "className": "text-center", "targets": [3]},
 			{ "width": "100px", "targets": [4] },
 			{ "className": "align-middle", "targets": [4]},

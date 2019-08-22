@@ -1,4 +1,4 @@
-$('body').on('click', '#sendMessageButton', function (event) {
+    $('body').on('click', '#sendMessageButton', function (event) {
         event.preventDefault();
         $.ajax({
             type: 'POST',
@@ -70,3 +70,5 @@ $('body').on('click', '#sendMessageButton', function (event) {
             }
         ]
     });
+
+
