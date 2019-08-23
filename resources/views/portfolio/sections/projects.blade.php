@@ -12,7 +12,7 @@
 			@foreach($projects as $project)
 			<div class="projects__slide">
 				<div class="row">
-					<div class="image col-md-12 col-lg-6 col-xl-6">
+					<div class="col-md-12 col-lg-6 col-xl-6">
 						<div class="row">
 						@foreach($project->projectImages as $image)
 								@if(!isset($buf))

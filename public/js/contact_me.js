@@ -70,7 +70,7 @@
             }
         ]
     });
-    var adaptive_sticky = function() {
+    var adaptiveSticky = function() {
         if($(window).width() < 1000){
             $('div#sticky_name').removeClass('sticky-top');
             $('div#sticky_image').removeClass('image');
@@ -79,16 +79,16 @@
             $('div#sticky_image').addClass('image');
         }
     }
-    adaptive_sticky();
-    $(window).resize(adaptive_sticky);
+    adaptiveSticky();
+    $(window).resize(adaptiveSticky);
     // Collapse Navbar
     var navbarCollapse = function() {
         if ($(document).scrollTop() > 100) {
-            $('div.sticky-top').removeClass('col-lg-12');
-            $('div.sticky-top').addClass('col-lg-6');
+            $('div#sticky_name').removeClass('col-lg-12');
+            $('div#sticky_name').addClass('col-lg-6');
         } else if ($(document).scrollTop() < 100){
-            $('div.sticky-top').removeClass('col-lg-6');
-            $('div.sticky-top').addClass('col-lg-12');
+            $('div#sticky_name').removeClass('col-lg-6');
+            $('div#sticky_name').addClass('col-lg-12');
         }
     };
     // Collapse now if page is not at top
