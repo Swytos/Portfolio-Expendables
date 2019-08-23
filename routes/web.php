@@ -59,3 +59,4 @@ Route::get('/', 'PortfolioPageController@index')->name('portfolio');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/home/contact', 'HomeController@mailContact')->name('contact');
 Route::get('/blog', 'BlogPageController@index')->name('blog');
+Route::get('/project/{project_id}', 'PortfolioPageController@getProject')->name('project');

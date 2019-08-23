@@ -70,5 +70,32 @@
             }
         ]
     });
+    var adaptive_sticky = function() {
+        if($(window).width() < 1000){
+            $('div#sticky_name').removeClass('sticky-top');
+            $('div#sticky_image').removeClass('image');
+        } else if($(window).width() > 1000) {
+            $('div#sticky_name').addClass('sticky-top');
+            $('div#sticky_image').addClass('image');
+        }
+    }
+    adaptive_sticky();
+    $(window).resize(adaptive_sticky);
+    // Collapse Navbar
+    var navbarCollapse = function() {
+        if ($(document).scrollTop() > 100) {
+            $('div.sticky-top').removeClass('col-lg-12');
+            $('div.sticky-top').addClass('col-lg-6');
+        } else if ($(document).scrollTop() < 100){
+            $('div.sticky-top').removeClass('col-lg-6');
+            $('div.sticky-top').addClass('col-lg-12');
+        }
+    };
+    // Collapse now if page is not at top
+    navbarCollapse();
+    // Collapse the navbar when page is scrolled
+    $(window).scroll(navbarCollapse);
+
+
 
 

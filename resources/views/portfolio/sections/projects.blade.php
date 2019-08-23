@@ -30,14 +30,14 @@
 						</div>
 					</div>
 					<div class="info col-md-12 col-lg-6 col-xl-6">
-							<h3 class="text-center">{{ $project->name }}</h3>
-							<h4><a target="_blank" href="{{ $project->url }}">Visit this site</a></h4>
-							<div class="description text-muted">{!! str_limit($project->description,'500','...') !!}</div>
-							<div class="learn text-center">
-								<a href="">
-									Learn more ...
-								</a>
-							</div>
+						<h3 class="text-center">{{ $project->name }}</h3>
+						<h4><a target="_blank" href="{{ $project->url }}">Visit this site</a></h4>
+						<div class="description text-muted">{!! str_limit($project->description,'500','...') !!}</div>
+						<div class="learn text-center">
+							<a href="{{ route('project', ['project_id' => $project->id]) }}">
+								Learn more ...
+							</a>
+						</div>
 					</div>
 
 				</div>
@@ -47,38 +47,3 @@
 		</div>
 	</div>
 </section>
-
-@push('modals')
-	<!-- Portfolio Modals -->
-	@foreach ($projects as $key => $project)
-	<!-- Modal {{ $key+1 }} -->
-	<div class="modal fade bd-example-modal-lg" id="portfolioModal_{{ $key+1 }}" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLiveLabel">{!! $project['name'] !!}</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">×</span>
-						</button>
-					</div>
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-10 mx-auto">
-							<div class="modal-body text-center">
-								<!-- Project Details Go Here -->
-								<p>{{ $project['description'] }}</p>
-								<ul class="list-inline">
-									<li>Website: {{ $project['url'] }}</li>
-								</ul>
-								<button class="btn btn-primary" data-dismiss="modal" type="button">
-									<i class="fa fa-times"></i>
-									Close Project</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	@endforeach
-@endpush
