@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Eloquent\About;
+
 use App\Eloquent\Projects;
 use App\Eloquent\Services;
+use Illuminate\Http\Request;
 use App\Eloquent\TeamMembers;
 
 class PortfolioPageController extends Controller
@@ -19,9 +19,8 @@ class PortfolioPageController extends Controller
 	{
 		$not_show_header = true;
 		$projects = Projects::where('display_project', 1)->get();
-		$members = TeamMembers::select('*')->where('is_deleted', 0)->get()->toArray();
-		$services = Services::select('*')->where('is_deleted', 0)->get()->toArray();
-		$about = About::select('*')->where('is_deleted', 0)->get()->toArray();
+		$members = TeamMembers::where('is_deleted', 0)->get()->toArray();
+		$services = Services::where('is_deleted', 0)->get()->toArray();
 		return view('portfolio/main', compact('not_show_header', 'members', 'projects', 'services','about'));
 	}
 
