@@ -13,7 +13,7 @@
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <link href="{{ asset('libraries/slick/slick.css') }}" rel="stylesheet">
     <link href="{{ asset('libraries/slick/slick-theme.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/customBlog.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/customProject.css') }}">
 
     <link rel="stylesheet" href="{{ asset('css/customPortfolio.css') }}">
     {{--Fancybox--}}
@@ -41,9 +41,9 @@
 @section('content')
 
     @include('portfolio.partials.header_portfolio')
-    <section class="padding">
+    <section class="padding project" name="project" id="project">
         <div class="container">
-            <div class="row">
+            <div class="row info">
                 <div class="col-lg-6"></div>
                 <div id="sticky_name" class="col-lg-12 text-center sticky-top">
                     <h2 class="text-uppercase">{{ $project->name }}</h2>
