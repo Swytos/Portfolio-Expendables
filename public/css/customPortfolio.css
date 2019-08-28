@@ -41,7 +41,7 @@
     line-height: 1.4;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-    overflow-y: scroll;
+    overflow-y: auto;
     text-overflow-y: ellipsis;
 }
 .learn {
@@ -107,4 +107,9 @@
     padding-top: 70px;
     padding-bottom: 30px;
     background-color: #f8fafc;
+}
+.balance {
+    position: relative; /* needed for footer positioning*/
+    height: auto !important; /* real browsers */
+    min-height: 75vh;
 }
