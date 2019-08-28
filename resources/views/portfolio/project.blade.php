@@ -42,8 +42,8 @@
 
     @include('portfolio.partials.header_portfolio')
     <section class="padding project" name="project" id="project">
-        <div class="container">
-            <div class="row balance info">
+        <div class="container balance ">
+            <div class="row info">
                 <div class="col-lg-6"></div>
                 <div id="sticky_name" class="col-lg-12 text-center sticky-top">
                     <h2 class="text-uppercase">{{ $project->name }}</h2>

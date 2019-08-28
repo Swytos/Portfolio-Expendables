@@ -4,4 +4,6 @@
 
 .project .info {
     background-color: #f8fafc;
+    height: auto !important; /* real browsers */
+    min-height: 75vh;
 }
