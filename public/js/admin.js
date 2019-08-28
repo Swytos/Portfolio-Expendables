@@ -3,6 +3,7 @@ var team_about_table;
 var team_services_table;
 var team_projects_table;
 var team_feedback_table;
+var team_tags_table;
 
 $(document).ready(function() {
 	$.ajaxSetup({
@@ -283,7 +284,10 @@ $(document).ready(function() {
 	//----------------------Project------------------------//
 
 	var count = 0;
-	files['new'] = {};
+
+	if (typeof files !== 'undefined') {
+		files['new'] = {};
+
 	$.each(files['old'], function(index,value) {
 		displayOldImage(index,value);
 	});
@@ -462,7 +466,7 @@ $(document).ready(function() {
 			}
 		});
 	});
-
+	}
 	//----------------------Feedback-----------------------//
 
 	team_feedback_table = $('#feedback').DataTable({
@@ -532,6 +536,82 @@ $(document).ready(function() {
 			} else {
 				$('#error').show();
 				$('#error').append('<h4><i class="fa fa-bug" aria-hidden="true"></i> You must enter message</h4>');
+			}
+		});
+	});
+
+	//----------------------Blog-----------------------//
+	$('.nav-link').on('click', function() {
+		if($(this).attr('aria-expanded') == 'false'){
+			$(this).find('#arrow').removeClass('fa-angle-down').addClass('fa-angle-up');
+		} else {
+			$(this).find('#arrow').removeClass('fa-angle-up').addClass('fa-angle-down');
+		}
+	});
+
+	if(nav_bar == 'Tags' || nav_bar == 'Categories' || nav_bar == 'Posts'){
+		$(document).find('#collapse-blog').addClass('show');
+	}
+
+	team_tags_table = $('#tags').DataTable({
+		scrollX:        true,
+		scrollCollapse: true,
+		autoWidth:         true,
+		paging:         true,
+		columnDefs: [
+			{ "width": "100px", "targets": [1] },
+			{ "className": "text-center", "targets": [1]},
+			{ "className": "align-middle", "targets": "_all"}
+		]
+	});
+
+	$("#apply_tag_changes").on('click', function () {
+		var formData = new FormData($("#tag_form")[0]);
+		$.ajax({
+			url: $("#tag_form").attr('action'),
+			type: 'POST',
+			data: formData,
+			beforeSend: function() {
+				$("#error_block").hide();
+				$("#success_block").hide();
+			},
+			cache: false,
+			processData: false,
+			contentType: false,
+		}).done(function( data ) {
+			if (data.success === true) {
+				$("#success_block").show();
+			}
+		}).fail(function(data) {
+			$("#error_block").show();
+			$("#error_list").html("<ul></ul>");
+			$.each(data.responseJSON.errors, function( index, value ) {
+				$("#error_list ul").append("<li>"+value+"</li>");
+			});
+		});
+	});
+
+	$("#tags").on('click', '.remove_tag', function (event) {
+		var tr_row = $(this).parents('tr');
+		var tag_id = tr_row.attr('tag-id');
+		$("#remove_tag_id").attr('value', tag_id);
+		$("#remove_tag_modal b").text(tr_row.find('th:first').text());
+		$("#remove_tag_modal").modal('show');
+	});
+
+	$("#confirm_removing_tag").on('click', function() {
+		var tag_id = $("#remove_tag_id").val();
+		$.ajax({
+			type: 'POST',
+			url: '/admin/removeTag',
+			data: {
+				'feedback_id': feedback_id
+			},
+			success: function(data){
+				$("#remove_feedback_modal").modal('hide');
+				if (data.success == true) {
+					team_feedback_table.row( $("tr[feedback-id='"+feedback_id+"']") ).remove().draw();
+				};
 			}
 		});
 	});
