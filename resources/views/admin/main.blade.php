@@ -105,8 +105,42 @@
                     <span>Feedback</span>
                 </a>
             </li>
-        </ul>
+{{--            <li class="nav-item">--}}
+{{--                <a class="nav-link" class="collapsed" role="button" data-toggle="collapse" href="#collapse-blog" aria-expanded="false" aria-controls="collapse-blog">--}}
+{{--                    <div class="row">--}}
+{{--                        <div class="col 6">--}}
+{{--                            <i class="fa fa-archive" aria-hidden="true"></i>--}}
+{{--                            <span>Blog</span>--}}
+{{--                        </div>--}}
+{{--                        <div class="text-right col-6">--}}
+{{--                            <i id="arrow" class="fas fa-angle-down"></i>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </a>--}}
+{{--            </li>--}}
 
+{{--            <div id="collapse-blog" class="collapse" style="padding-left: 20px" data-parent=".sidebar" aria-labelledby="heading-blog">--}}
+{{--                <li class="nav-item {{ ($nav_bar == 'Tags') ? 'active' : '' }}">--}}
+{{--                    <a class="nav-link" href="{{ route('admin.tags') }}">--}}
+{{--                        <i class="fas fa-tags"></i>--}}
+{{--                        <span>Tags</span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link" href="">--}}
+{{--                        <i class="fa fa-list-alt" aria-hidden="true"></i>--}}
+{{--                        <span>Categories</span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link" href="">--}}
+{{--                        <i class="fas fa-mail-bulk"></i>--}}
+{{--                        <span>Posts</span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+{{--            </div>--}}
+
+        </ul>
         <div id="content-wrapper">
             <div class="container-fluid">
                 <!-- Breadcrumbs-->
@@ -170,6 +204,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+        var nav_bar = <?php echo json_encode($nav_bar); ?>;
     </script>
     <script src="{{ asset('libraries/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
