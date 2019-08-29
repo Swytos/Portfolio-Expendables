@@ -32,8 +32,9 @@
 					<div class="info col-md-12 col-lg-6 col-xl-6">
 						<h3 class="text-center">{{ $project->name }}</h3>
 						<h4><a target="_blank" href="{{ $project->url }}">Visit this site</a></h4>
-						<div class="description text-muted">{!! str_limit($project->description,'500','...') !!}</div>
-
+						<div class="description text-muted">
+							{!! str_limit($project->description,'500','...') !!}</p>
+						</div>
 						<div class="learn text-center">
 							<a href="{{ route('project', ['project_id' => $project->id]) }}">
 								Learn more ...
