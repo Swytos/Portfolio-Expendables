@@ -33,7 +33,7 @@
 						<h3 class="text-center">{{ $project->name }}</h3>
 						<h4><a target="_blank" href="{{ $project->url }}">Visit this site</a></h4>
 						<div class="description text-muted">
-							{!! str_limit($project->description,'500','...') !!}</p>
+							{!! str_limit(strip_tags($project->description),'500','...') !!}
 						</div>
 						<div class="learn text-center">
 							<a href="{{ route('project', ['project_id' => $project->id]) }}">
