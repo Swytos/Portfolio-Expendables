@@ -78,6 +78,7 @@
 }
 .info {
     padding-top: 20px;
+    padding-bottom: 20px;
 }
 .description::-webkit-scrollbar-track
 {
@@ -104,8 +105,8 @@
 }
 
 .sticky-top {
-    padding-top: 70px;
-    padding-bottom: 30px;
+    padding-top: 60px;
+    padding-bottom: 0px;
     background-color: #f8fafc;
 }
 .balance {
