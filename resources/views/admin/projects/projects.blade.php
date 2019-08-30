@@ -44,6 +44,9 @@
 		<a href="{{ route('admin.new_project') }}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Add Project</a>
 	</div>
 </div>
+<script>
+	var files = {};
+	</script>
 @endsection
 @push('modals')
 	@include('admin.projects.remove_projects_modal')
