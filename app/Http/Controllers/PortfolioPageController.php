@@ -26,9 +26,13 @@ class PortfolioPageController extends Controller
 
 	public function getProject(Request $request, $project_id)
     {
-        $not_show_header = true;
-        $project = Projects::where('id', $project_id)->first();
-	    return view('portfolio/project', compact('not_show_header','project'));
+        if(count(Projects::where('id', $project_id)->get())>0){
+            $not_show_header = true;
+            $project = Projects::where('id', $project_id)->first();
+            return view('portfolio/project', compact('not_show_header','project'));
+        } else {
+            return abort(404);
+        }
     }
 
 
