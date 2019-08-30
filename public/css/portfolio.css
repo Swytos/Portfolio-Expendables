@@ -229,7 +229,7 @@ header.masthead {
       font-family: 'Droid Serif', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
 
 #portfolio * {
-  z-index: 2; }
+  }
 
 @media (min-width: 767px) {
   #portfolio .portfolio-item {

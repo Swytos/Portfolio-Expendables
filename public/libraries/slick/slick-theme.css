@@ -72,7 +72,6 @@
 
     opacity: .75;
     color: #8e8f91;
-
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -80,7 +79,7 @@
 .slick-prev
 {
     left: -1%;
-    z-index: 1;
+    z-index: 999;
 }
 [dir='rtl'] .slick-prev
 {
@@ -99,7 +98,7 @@
 .slick-next
 {
     right: -1%;
-    z-index: 1;
+    z-index: 999;
 }
 [dir='rtl'] .slick-next
 {
