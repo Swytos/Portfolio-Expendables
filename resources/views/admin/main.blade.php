@@ -26,7 +26,7 @@
 <body id="page-top">
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-        <a class="navbar-brand mr-1" href="index.html">Admin Panel</a>
+        <a class="navbar-brand mr-1" href="#">Admin Panel</a>
 
         <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
             <i class="fas fa-bars"></i>
@@ -126,8 +126,8 @@
 {{--                        <span>Tags</span>--}}
 {{--                    </a>--}}
 {{--                </li>--}}
-{{--                <li class="nav-item">--}}
-{{--                    <a class="nav-link" href="">--}}
+{{--                <li class="nav-item {{ ($nav_bar == 'Categories') ? 'active' : '' }}">--}}
+{{--                    <a class="nav-link" href="{{ route('admin.categories') }}">--}}
 {{--                        <i class="fa fa-list-alt" aria-hidden="true"></i>--}}
 {{--                        <span>Categories</span>--}}
 {{--                    </a>--}}
