@@ -21,7 +21,7 @@ class PortfolioPageController extends Controller
 		$projects = Projects::where('display_project', 1)->get();
 		$members = TeamMembers::where('is_deleted', 0)->get()->toArray();
 		$services = Services::where('is_deleted', 0)->get()->toArray();
-		return view('portfolio/main', compact('not_show_header', 'members', 'projects', 'services','about'));
+		return view('portfolio/main', compact('not_show_header', 'members', 'projects', 'services'));
 	}
 
 	public function getProject(Request $request, $project_id)
