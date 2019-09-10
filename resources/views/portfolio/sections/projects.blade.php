@@ -17,12 +17,12 @@
 						@foreach($project->projectImages as $image)
 								@if(!isset($buf))
 									<div class="main col-12 text-center">
-										<a data-fancybox="{{ $image->projects_id }}" href="{{ asset($image->image_path) }}"><img src="{{ asset($image->image_path) }}" alt=""></a>
+										<a data-fancybox="{{ $image->project_id }}" href="{{ asset($image->image_path) }}"><img src="{{ asset($image->image_path) }}" alt=""></a>
 									</div>
 									@php $buf=1; @endphp
 								@else
 									<div class="col-4 minor text-center d-none d-sm-block">
-										<a data-fancybox="{{ $image->projects_id }}" href="{{ asset($image->image_path) }}"><img src="{{ asset($image->image_path) }}" alt=""></a>
+										<a data-fancybox="{{ $image->project_id }}" href="{{ asset($image->image_path) }}"><img src="{{ asset($image->image_path) }}" alt=""></a>
 									</div>
 								@endif
 
