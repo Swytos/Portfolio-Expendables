@@ -35,7 +35,7 @@ class ProjectsController extends Controller
 
     public function removeProject(Request $request)
     {
-        $project_images = ProjectImages::where('projects_id', $request->project_id);
+        $project_images = ProjectImages::where('project_id', $request->project_id);
         foreach ($project_images->get() as $image){
             unlink(public_path($image->image_path));
         }
@@ -74,7 +74,7 @@ class ProjectsController extends Controller
                     $path = '/img/projects/'.$filename;
                     Image::make(file_get_contents($file))->save(public_path().$path);
                     $project_images = new ProjectImages();
-                    $project_images->projects_id = $project->id;
+                    $project_images->project_id = $project->id;
                     $project_images->image_path = $path;
                     $project_images->save();
                 }
@@ -95,9 +95,9 @@ class ProjectsController extends Controller
             $project->description = $request->input('description');
             $project->display_project = $request->display_project;
             if ($request->has('fileOld')){
-                ProjectImages::where('projects_id', $request->project_id)->whereNotIn('image_path',$request->fileOld)->delete();
+                ProjectImages::where('project_id', $request->project_id)->whereNotIn('image_path',$request->fileOld)->delete();
             } else {
-                ProjectImages::where('projects_id', $request->project_id)->delete();
+                ProjectImages::where('project_id', $request->project_id)->delete();
             }
             if ($request->has('fileNew')) {
                 foreach($request->fileNew as $file){
@@ -106,7 +106,7 @@ class ProjectsController extends Controller
                     $path = '/img/projects/'.$filename;
                     Image::make(file_get_contents($file))->save(public_path().$path);
                     $project_images = new ProjectImages();
-                    $project_images->projects_id = $request->project_id;
+                    $project_images->project_id = $request->project_id;
                     $project_images->image_path = $path;
                     $project_images->save();
                 }
