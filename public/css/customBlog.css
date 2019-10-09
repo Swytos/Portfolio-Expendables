@@ -1,0 +1,157 @@
+.card {
+    background-color: white;
+    box-shadow: 0 2px 6px 0 #bdc3ca;
+    padding: 50px 25px 50px 25px;
+    position: relative;
+    font-size: 18px;
+    font-family: sans-serif;
+}
+
+.blog {
+    background-color: #dedfe0;
+}
+.post-detail {
+    background-color: #dedfe0;
+}
+.blog h3 {
+    /*text-align: center;*/
+    font-family: sans-serif;
+}
+
+.post {
+    background-color: white;
+    margin: 50px 40px 50px 100px;
+    box-shadow: 0 2px 6px 0 #bdc3ca;
+    min-height: 265px;
+}
+
+.pagination {
+    /*margin: 50px 315px 50px 420px;*/
+    /*box-shadow: 0 2px 6px 0 #bdc3ca;*/
+    font-size: 18px;
+}
+.pagination li a{
+      color: #6c757d;
+}
+.post img {
+    max-height: 290px;
+    max-width: 290px;
+    width: auto;
+    height: auto;
+    padding: 30px 20px 20px 20px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left:0;
+    right: 0;
+    margin: auto;
+}
+
+.post .col-xl-8 {
+    padding: 20px 50px 20px 50px;
+}
+
+.post .col-xl-8 h3 {
+    text-align: center;
+    font-family: sans-serif;
+}
+.post .col-xl-6 i {
+    color: #fed136;
+    font-size: 20px;
+}
+.post .col-8 button {
+    float: right;
+}
+
+.post .col-8 p {
+    font-family: sans-serif;
+    font-size: 18px;
+}
+.title {
+    padding-top: 50px;
+}
+ul {
+    list-style-type: none;
+}
+
+.card .tags button {
+    margin: 5px 5px 5px 5px;
+}
+
+button[name=categories], button[name=tags] {
+    color: #fed136;
+}
+button[name=categories]:hover, button[name=tags]:hover{
+    color: #fed136;
+}
+button[name=categories].collapsed , button[name=tags].collapsed{
+    color: black;
+}
+.list li a {
+    text-decoration: none;
+    color: black;
+}
+
+.list li a.active {
+    color: #fed136;
+}
+
+.active-tag {
+    background-color: #fed136 !important;
+}
+@media (max-width: 1200px) {
+    .post {
+        background-color: white;
+        margin: 50px 40px 50px 40px;
+        box-shadow: 0 2px 6px 0 #bdc3ca;
+    }
+    .post img {
+        max-height: 300px;
+        max-width: 300px;
+        width: auto;
+        height: auto;
+        position: static;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+@media (max-width: 576px) {
+    .card {
+        background-color: white;
+        box-shadow: 0 2px 6px 0 #bdc3ca;
+        padding: 20px 10px 20px 10px;
+        position: relative;
+        font-size: 18px;
+        font-family: sans-serif;
+    }
+    .post {
+        background-color: white;
+        margin: 20px 10px 20px 10px;
+        box-shadow: 0 2px 6px 0 #bdc3ca;
+    }
+    .post img {
+        max-height: 250px;
+        max-width: 250px;
+        width: auto;
+        height: auto;
+        position: static;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+.post-content {
+    background-color: white;
+    font-size: 20px;
+    font-family: Sans-Serif;
+    padding-left: 50px;
+    padding-right: 50px;
+
+}
+
+.post-content i {
+    color: #fed136;
+    font-size: 20px;
+
+}

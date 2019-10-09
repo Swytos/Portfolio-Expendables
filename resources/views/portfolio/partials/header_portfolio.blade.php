@@ -20,9 +20,9 @@
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="{{ route('portfolio') }}#contact">Contact</a>
                 </li>
-{{--                <li class="nav-item">--}}
-{{--                    <a class="nav-link js-scroll-trigger" href="{{ route('blog') }}">Blog</a>--}}
-{{--                </li>--}}
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="{{ route('blog') }}">Blog</a>
+                </li>
             </ul>
         </div>
     </div>

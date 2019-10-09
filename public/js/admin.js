@@ -4,6 +4,8 @@ var team_services_table;
 var team_projects_table;
 var team_feedback_table;
 var team_tags_table;
+var team_categories_table;
+var team_posts_table;
 
 $(document).ready(function() {
 	$.ajaxSetup({
@@ -442,7 +444,9 @@ $(document).ready(function() {
 
 	});
 
-	$("#projects").on('click', '.remove_project', function (event) {
+	$("body").on('click', '.remove_project', function (event) {
+        // event.preventDefault();
+        console.log(1234);
 		var tr_row = $(this).parents('tr');
 		var project_id = tr_row.attr('project-id');
 		$("#remove_project_id").attr('value', project_id);
@@ -541,16 +545,22 @@ $(document).ready(function() {
 	});
 
 	//----------------------Blog-----------------------//
+
+	//----------------------Tags-----------------------//
+
 	$('.nav-link').on('click', function() {
 		if($(this).attr('aria-expanded') == 'false'){
 			$(this).find('#arrow').removeClass('fa-angle-down').addClass('fa-angle-up');
+			$(this).parent('li').addClass('active');
 		} else {
 			$(this).find('#arrow').removeClass('fa-angle-up').addClass('fa-angle-down');
+			$(this).parent('li').removeClass('active');
 		}
 	});
 
 	if(nav_bar == 'Tags' || nav_bar == 'Categories' || nav_bar == 'Posts'){
 		$(document).find('#collapse-blog').addClass('show');
+		$(document).find('#arrow').parents('li').addClass('active');
 	}
 
 	team_tags_table = $('#tags').DataTable({
@@ -605,14 +615,152 @@ $(document).ready(function() {
 			type: 'POST',
 			url: '/admin/removeTag',
 			data: {
-				'feedback_id': feedback_id
+				'tag_id': tag_id
 			},
 			success: function(data){
-				$("#remove_feedback_modal").modal('hide');
+				$("#remove_tag_modal").modal('hide');
 				if (data.success == true) {
-					team_feedback_table.row( $("tr[feedback-id='"+feedback_id+"']") ).remove().draw();
+					team_tags_table.row( $("tr[tag-id='"+tag_id+"']") ).remove().draw();
 				};
 			}
 		});
 	});
+
+	//----------------------Categories-----------------------//
+
+	team_categories_table = $('#categories').DataTable({
+		scrollX:        true,
+		scrollCollapse: true,
+		autoWidth:         true,
+		paging:         true,
+		columnDefs: [
+			{ "width": "100px", "targets": [1] },
+			{ "className": "text-center", "targets": [1]},
+			{ "className": "align-middle", "targets": "_all"}
+		]
+	});
+
+	$("#apply_category_changes").on('click', function () {
+		var formData = new FormData($("#category_form")[0]);
+		$.ajax({
+			url: $("#category_form").attr('action'),
+			type: 'POST',
+			data: formData,
+			beforeSend: function() {
+				$("#error_block").hide();
+				$("#success_block").hide();
+			},
+			cache: false,
+			processData: false,
+			contentType: false,
+		}).done(function( data ) {
+			if (data.success === true) {
+				$("#success_block").show();
+			}
+		}).fail(function(data) {
+			$("#error_block").show();
+			$("#error_list").html("<ul></ul>");
+			$.each(data.responseJSON.errors, function( index, value ) {
+				$("#error_list ul").append("<li>"+value+"</li>");
+			});
+		});
+	});
+
+	$("#categories").on('click', '.remove_category', function (event) {
+		var tr_row = $(this).parents('tr');
+		var category_id = tr_row.attr('category-id');
+		$("#remove_category_id").attr('value', category_id);
+		$("#remove_category_modal b").text(tr_row.find('th:first').text());
+		$("#remove_category_modal").modal('show');
+	});
+
+	$("#confirm_removing_category").on('click', function() {
+		var category_id = $("#remove_category_id").val();
+		$.ajax({
+			type: 'POST',
+			url: '/admin/removeCategory',
+			data: {
+				'category_id': category_id
+			},
+			success: function(data){
+				$("#remove_category_modal").modal('hide');
+				if (data.success == true) {
+					team_categories_table.row( $("tr[category-id='"+category_id+"']") ).remove().draw();
+				};
+			}
+		});
+	});
+
+	//----------------------Posts-----------------------//
+
+	team_posts_table = $('#posts').DataTable({
+		scrollX: true,
+		scrollCollapse: true,
+		autoWidth: true,
+		paging: true,
+		columnDefs: [
+			{ "width": "600px", "targets": [1] },
+			{ "className": "text-left", "targets": [1]},
+			{ "width": "100px", "targets": [4] },
+			{ "className": "text-center", "targets": [4]},
+			{ "className": "align-middle", "targets": "_all"}
+		]
+	});
+
+	$("#apply_post_changes").on('click', function () {
+		for (instance in CKEDITOR.instances) {
+			CKEDITOR.instances[instance].updateElement();
+		}
+		var formData = new FormData($("#post_form")[0]);
+		$.ajax({
+			url: $("#post_form").attr('action'),
+			type: 'POST',
+			data: formData,
+			beforeSend: function() {
+				$("#error_block").hide();
+				$("#success_block").hide();
+			},
+			cache: false,
+			processData: false,
+			contentType: false,
+		}).done(function( data ) {
+			if (data.success === true) {
+				$("#success_block").show();
+			}
+		}).fail(function(data) {
+			$("#error_block").show();
+			$("#error_list").html("<ul></ul>");
+			$.each(data.responseJSON.errors, function( index, value ) {
+				$("#error_list ul").append("<li>"+value+"</li>");
+			});
+		});
+	});
+
+	$("#posts").on('click', '.remove_post', function (event) {
+		var tr_row = $(this).parents('tr');
+		var post_id = tr_row.attr('post-id');
+		$("#remove_post_id").attr('value', post_id);
+		$("#remove_post_modal b").text(tr_row.find('th:first').text());
+		$("#remove_post_modal").modal('show');
+	});
+
+	$("#confirm_removing_post").on('click', function() {
+		var post_id = $("#remove_post_id").val();
+		console.log(post_id);
+		$.ajax({
+			type: 'POST',
+			url: '/admin/removePost',
+			data: {
+				'post_id': post_id
+			},
+			success: function(data){
+				$("#remove_post_modal").modal('hide');
+				if (data.success == true) {
+					team_posts_table.row( $("tr[post-id='"+post_id+"']") ).remove().draw();
+				};
+			}
+		});
+	});
+
+
 });

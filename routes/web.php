@@ -53,6 +53,28 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/preview_feedback/{feedback_id}', 'Admin\FeedbackController@createFeedbackView')->name('admin.preview_feedback');
     Route::post('/admin/removeFeedback', 'Admin\FeedbackController@removeFeedback');
     Route::post('/admin/preview_feedback/reply', 'Admin\FeedbackController@replyMessage')->name('admin.reply_message');
+
+    Route::get('/admin/tags', 'Admin\BlogController@tags')->name('admin.tags');
+    Route::get('/admin/new_tag', 'Admin\BlogController@createTagView')->name('admin.new_tag');
+    Route::get('/admin/edit_tag/{tag_id}', 'Admin\BlogController@editTagView')->name('admin.edit_tag');
+    Route::post('/admin/new_tag', 'Admin\BlogController@createTag');
+    Route::post('/admin/edit_tag/{tag_id}', 'Admin\BlogController@editTag');
+    Route::post('/admin/removeTag', 'Admin\BlogController@removeTag');
+
+    Route::get('/admin/categories', 'Admin\BlogController@categories')->name('admin.categories');
+    Route::get('/admin/new_categories', 'Admin\BlogController@createCategoryView')->name('admin.new_category');
+    Route::get('/admin/edit_category/{category_id}', 'Admin\BlogController@editCategoryView')->name('admin.edit_category');
+    Route::post('/admin/new_categories', 'Admin\BlogController@createCategory');
+    Route::post('/admin/edit_category/{category_id}', 'Admin\BlogController@editCategory');
+    Route::post('/admin/removeCategory', 'Admin\BlogController@removeCategory');
+
+    Route::get('/admin/posts', 'Admin\BlogController@posts')->name('admin.posts');
+    Route::get('/admin/new_posts', 'Admin\BlogController@createPostView')->name('admin.new_post');
+    Route::get('/admin/edit_post/{post_id}', 'Admin\BlogController@editPostView')->name('admin.edit_post');
+    Route::post('/admin/new_posts', 'Admin\BlogController@createPost');
+    Route::post('/admin/edit_post/{post_id}', 'Admin\BlogController@editPost');
+    Route::post('/admin/removePost', 'Admin\BlogController@removePost');
+    Route::post('/upload', 'Admin\BlogController@uploadImg');
 });
 
 Route::get('/', 'PortfolioPageController@index')->name('portfolio');
@@ -60,3 +82,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/home/contact', 'HomeController@mailContact')->name('contact');
 Route::get('/blog', 'BlogPageController@index')->name('blog');
 Route::get('/project/{project_id}', 'PortfolioPageController@getProject')->name('project');
+Route::get('/post', 'BlogPageController@getPost')->name('post');
